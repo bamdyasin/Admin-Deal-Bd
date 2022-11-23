@@ -1,0 +1,233 @@
+package com.example.applications;
+ 
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.ListView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import android.widget.BaseAdapter;
+import android.view.ViewGroup;
+import android.view.View;
+import android.view.LayoutInflater;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import org.json.JSONArray;
+import com.android.volley.VolleyError;
+import org.json.JSONObject;
+import org.json.JSONException;
+import android.content.Intent;
+import android.webkit.WebView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+
+public class MainActivity extends Activity { 
+ListView myListView;
+	ArrayList<HashMap <String, String>> myArrayList = new ArrayList<>();
+	HashMap <String, String> myHashMap;
+  
+    EditText myEditText;
+    Button myButton;
+    ImageView myImageView;
+    ProgressBar myProgressBar;
+    int myImages[] ={R.drawable.pubg, R.drawable.freefire, R.drawable.fb, R.drawable.youtube, R.drawable.tiktok, R.drawable.others};
+    
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        myProgressBar = findViewById(R.id.activitymainProgressBar1);
+		
+		this.setTitle("Home: Admin Deal");
+		
+		myListView = findViewById(R.id.myListView);
+		MyAdapter myAdapter = new MyAdapter();
+		myListView.setAdapter(myAdapter);
+		
+       myEditText = findViewById(R.id.activitymainEditText1);
+       myButton = findViewById(R.id.mySubmit);
+       myImageView = findViewById(R.id.activitymainImageView1);
+       
+       
+        
+       
+        myButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    
+                  String munum =  myEditText.getText().toString();
+                    
+                    int number = Integer.parseInt(munum);
+                    
+                    
+                    
+                    
+                    if(number == 6 ){
+                        Toast.makeText(getApplicationContext(),"Joining Deal Box", Toast.LENGTH_LONG).show();
+                        
+                    }else {
+                        Toast.makeText(getApplicationContext(),"Wrong Input.... Contact Admin", Toast.LENGTH_LONG).show();
+                        myEditText.setError("Please Input This Field");
+                    }
+                    
+
+                }
+            });
+       
+       
+        
+        
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://earningaide.000webhostapp.com/app/adminDeal.json";
+
+// Request a string response from the provided URL.
+
+        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(Request.Method.GET, url,null,
+            new Response.Listener<JSONArray>() {
+
+                @Override
+                public void onResponse(JSONArray response) {
+
+                    try {
+                        
+                        myProgressBar.setVisibility(View.GONE);
+
+                        for(int x=0; x<response.length(); x++){
+                            
+
+
+
+                            JSONObject jSONObject =  response.getJSONObject(x);
+                            String itemIcon = jSONObject.getString("itemIcon");
+                            String itemName = jSONObject.getString("itemName");
+                            String itemTitle = jSONObject.getString("itemTitle");
+                            String itemLink = jSONObject.getString("itemlink");
+                            
+                            myHashMap = new HashMap<>();
+                            myHashMap.put("icon",itemIcon);
+                            myHashMap.put("name",itemName); 
+                            myHashMap.put("title",itemTitle);
+                            myHashMap.put("link",itemLink);
+                            myArrayList.add(myHashMap);
+
+                         //   textView.append(("Index Number: "+x+"\n"+name+"\n"+link+"\n\n"));
+                        }
+
+                    } catch (JSONException e) {}
+
+                }
+
+
+
+
+
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError p1) {
+                }
+
+
+            });
+
+// Add the request to the RequestQueue.
+
+        queue.add(jsonArrayRequest);
+
+    }
+    
+        
+        
+    
+	
+	
+	
+	
+	
+	
+	
+	// Custom Adaptar
+	private class MyAdapter extends BaseAdapter {
+		
+		LayoutInflater layoutInflater;
+		
+		@Override
+		public int getCount() {
+			return myArrayList.size();
+		}
+
+		@Override
+		public Object getItem(int p1) {
+			return null;
+		}
+
+		@Override
+		public long getItemId(int p1) {
+			return 0;
+		}
+
+		@Override
+		public View getView(final int p1, View p2, ViewGroup p3) {
+			
+			layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View myView = layoutInflater.inflate(R.layout.item,p3, false);
+			
+			Button  myButton = myView.findViewById(R.id.itemButton1);
+            TextView myItemName = myView.findViewById(R.id.itemTextView1);
+            TextView myItemTitle = myView.findViewById(R.id.itemTextView2);
+            final WebView myWebView = myView.findViewById(R.id.webview);
+            ImageView myImageView = myView.findViewById(R.id.myItemImage);
+            myImageView.setImageResource(myImages[p1]); 
+            
+
+            HashMap <String, String> myHashMaplist =myArrayList.get(p1);
+            final String myIcon = myHashMaplist.get("icon");
+            final String myName =myHashMaplist.get("name");
+            final String myTitle =myHashMaplist.get("title");
+            final String myLink =myHashMaplist.get("link");
+            
+            //----OR
+            //tvName.setText(myHashMaplist.get("Name"));
+            // tvPhone.setText(myHashMaplist.get("Phone"));
+            
+            
+            
+            
+            myItemName.setText(myName);
+            myItemTitle.setText(myTitle);
+            myItemTitle.append(myName);
+            
+			
+			myButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getApplicationContext(),"Connecting "+p1+"to "+myName+" \nBUY-SELL GROUP", Toast.LENGTH_LONG).show();
+                        
+                     //   webview.getSettings().setJavaScriptEnabled(true);
+
+                        myWebView.loadUrl(myLink);
+                    }
+                });
+			
+			return myView;
+		}
+	}
+	
+    
+    
+    
+    
+
+	
+	
+} 
