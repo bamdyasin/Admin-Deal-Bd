@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="#FF000000">
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:id="@+id/layHeader">
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="150dp"
+			android:id="@+id/laySlide"
+			android:padding="10dp">
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<ImageView
+					android:src="@drawable/yasin"
+					android:layout_width="150dp"
+					android:layout_height="match_parent"
+					android:id="@+id/activitymainImageView1"/>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="center|center_horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="YASIN ARAFAT"
+						android:textSize="24sp"
+						android:textStyle="bold"
+						android:textColor="#FF000000"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Your Trusted Admin"/>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:weightSum="2">
+
+						<Button
+							android:layout_width="match_parent"
+							style="?android:attr/buttonStyleSmall"
+							android:layout_height="wrap_content"
+							android:text="Phone"
+							android:layout_weight="1.0"/>
+
+						<Button
+							android:layout_width="match_parent"
+							style="?android:attr/buttonStyleSmall"
+							android:layout_height="wrap_content"
+							android:text="Message"
+							android:layout_weight="1.0"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Note: এডমিনের কাছ থেকে ডিল কোড চেয়ে নিবেন।"
+			android:gravity="center_horizontal"
+			android:background="#FFFF00FF"
+			android:textStyle="bold"
+			android:textColor="#FF000000"/>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:id="@+id/layInput"
+			android:background="@drawable/bottom_curved"
+			android:padding="5dp">
+
+			<EditText
+				android:layout_width="wrap_content"
+				android:inputType="number"
+				android:layout_height="wrap_content"
+				android:ems="10"
+				android:hint="Enter Deal Code"
+				android:id="@+id/activitymainEditText1"/>
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:text="Submit"
+				android:background="@drawable/roundbtn"
+				android:textColor="#FF00FFF2"
+				android:textStyle="bold"
+				android:id="@+id/mySubmit"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<ListView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/myListView"/>
+
+		<ProgressBar
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/myListView"
+			android:layout_centerHorizontal="true"
+			android:id="@+id/activitymainProgressBar1"/>
+
+	</RelativeLayout>
+
+</LinearLayout>
