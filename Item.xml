@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center_horizontal">
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp">
+
+		<ImageView
+			android:src="@drawable/fb"
+			android:layout_width="55dp"
+			android:layout_height="55dp"
+			android:id="@+id/myItemImage"
+			android:layout_margin="5dp"
+			android:scaleType="centerCrop"/>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_horizontal">
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:layout_margin="2dp">
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Free Fire"
+					android:minLines="1"
+					android:textSize="22sp"
+					android:textStyle="bold"
+					android:textColor="#FFFF00FF"
+					android:id="@+id/itemTextView1"
+					android:gravity="left"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="Join Group:- Start Selling..."
+					android:textColor="#FF00EEFF"
+					android:id="@+id/itemTextView2"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="right|center">
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Join"
+					android:layout_margin="5dp"
+					android:background="@drawable/mybtn"
+					android:textColor="#FF00FFF2"
+					android:id="@+id/itemButton1"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#FF908A8A"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"/>
+
+	<WebView
+		android:id="@+id/webview"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="gone"/>
+
+</LinearLayout>
